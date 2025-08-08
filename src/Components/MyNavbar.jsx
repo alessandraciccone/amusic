@@ -4,14 +4,17 @@ import appleLogo from "../assets/img/musica.svg";
 
 function MyNavbar() {
   return (
-    <Navbar expand="lg" className="bg-dark">
-      <Container fluid className="flex-lg-column align-items p-3">
+    <Navbar expand="lg" className="bg-dark my-navbar">
+      <Container fluid className="flex-lg-column align-items-lg-start p-3">
         <Navbar.Toggle
           aria-controls="navbar-content"
-          className="custom-toggler"
+          className="custom-toggler mb-3"
         />
-        <Navbar.Collapse id="navbar-content" className="w-100 ">
-          <Form className="mb-3 d-none d-lg-block ">
+        <Navbar.Brand href="#home">
+          <img src={appleLogo} alt="Logo" height="30" />
+        </Navbar.Brand>
+        <Navbar.Collapse id="navbar-content" className="w-100">
+          <Form className="mb-4 d-none d-lg-block w-100">
             <Form.Control
               type="text"
               placeholder="Cerca"
@@ -19,7 +22,7 @@ function MyNavbar() {
             />
           </Form>
 
-          <Nav className="flex-lg-column text-danger">
+          <Nav className="flex-lg-column text-danger w-100">
             <Nav.Link href="#home" className="text-light">
               <i className="bi bi-house-door me-2 text-danger"></i> Home
             </Nav.Link>
@@ -31,11 +34,8 @@ function MyNavbar() {
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
-        <Navbar.Brand href="#home" className="mb-lg-4">
-          <img src={appleLogo} alt="Logo" height="30" />
-        </Navbar.Brand>
 
-        <Nav.Link href="#login" className="text-danger">
+        <Nav.Link href="#login" className="text-danger d-lg-none mt-3">
           Accedi
         </Nav.Link>
       </Container>

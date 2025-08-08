@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
+import "./FetchCard.css";
 
 class FetchCard extends Component {
   constructor(props) {
@@ -15,21 +16,15 @@ class FetchCard extends Component {
     )
       .then((res) => res.json())
       .then((data) => {
-        this.setState({ songs: data.data.slice(0, 6) });
+        const isMobile = window.innerWidth < 768;
+        const limit = isMobile ? 6 : 10;
+        this.setState({ songs: data.data.slice(0, limit) });
       })
       .catch((err) => console.error("Errore nella fetch:", err));
   }
 
   render() {
     const { songs } = this.state;
-
-    // Suddividi le canzoni in gruppi di 3 usando reduce
-    const groupedSongs = songs.reduce((acc, song, index) => {
-      if (index % 3 === 0) {
-        acc.push(songs.slice(index, index + 3));
-      }
-      return acc;
-    }, []);
 
     return (
       <Container className="mt-4">
@@ -42,25 +37,26 @@ class FetchCard extends Component {
           </Col>
         </Row>
 
-        {groupedSongs.map((group, rowIndex) => (
-          <Row key={rowIndex} className="align-items-stretch mb-4">
-            {group.map((song, index) => (
-              <Col key={index} sm={4}>
-                <Card className="bg-transparent text-light h-100">
-                  <Card.Img
-                    src={song.album.cover_medium}
-                    alt={song.title}
-                    className="card-img"
-                  />
-                  <Card.Body className="d-flex flex-column justify-content-end">
-                    <Card.Title>{song.title}</Card.Title>
-                    <Card.Text>{song.artist.name}</Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        ))}
+        <Row className="align-items-stretch">
+          {songs.map((song, index) => (
+            <Col key={index} xs={6} sm={4} md={3} lg={2} className="mb-4">
+              <Card
+                className="bg-transparent text-light h-100"
+                style={{ minHeight: "250px" }}
+              >
+                <Card.Img
+                  src={song.album.cover_medium}
+                  alt={song.title}
+                  className="square-card-img"
+                />
+                <Card.Body className="d-flex flex-column justify-content-end">
+                  <Card.Title>{song.title}</Card.Title>
+                  <Card.Text>{song.artist.name}</Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
       </Container>
     );
   }

@@ -7,14 +7,16 @@ import OtherCard from "./Components/OtherCard";
 import MyFooter from "./Components/MyFooter";
 function App() {
   return (
-    <>
+    <div className="app-layout">
       <MyNavbar />
-      <MyCard />
-      <OtherCard />
-      <FetchCard />
-      <Explorer />
-      <MyFooter />
-    </>
+      <main className="main-content">
+        <MyCard />
+        <OtherCard />
+        <FetchCard />
+        <Explorer />
+        <MyFooter />
+      </main>
+    </div>
   );
 }
 
