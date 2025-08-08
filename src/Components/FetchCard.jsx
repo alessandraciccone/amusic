@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
-import "./FetchCard.css";
 
 class FetchCard extends Component {
   constructor(props) {

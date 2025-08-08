@@ -3,14 +3,13 @@
   flex-direction: column;
 }
 
-/* Desktop layout */
 @media (min-width: 992px) {
   .app-layout {
     flex-direction: row;
   }
 
   .main-content {
-    margin-left: 250px; /* larghezza della sidebar */
+    margin-left: 250px; 
     padding: 20px;
     width: calc(100% - 250px);
   }
